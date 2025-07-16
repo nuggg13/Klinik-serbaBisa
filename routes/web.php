@@ -41,3 +41,8 @@ Route::get('/login', function () {
 Route::get('/dashboard-pasien', function () {
     return view('dashboard-pasien');
 })->name('dashboard.pasien');
+
+use App\Http\Controllers\AuthController;
+
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
