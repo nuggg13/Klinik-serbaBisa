@@ -62,26 +62,6 @@
                         </button>
                     </div>
                 </div>
-                <div class="flex justify-between items-center bg-white p-5 rounded shadow">
-                    <div>
-                        <h3 class="font-semibold text-lg">Reservasi Gigi</h3>
-                        <p class="text-sm text-gray-500">Tanggal: 10 Juli 2025</p>
-                        <p class="text-sm text-gray-500">Jam: 13.00 WIB</p>
-                    </div>
-                    <div class="text-right">
-                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">Selesai</span>
-                    </div>
-                </div>
-                <div class="flex justify-between items-center bg-white p-5 rounded shadow">
-                    <div>
-                        <h3 class="font-semibold text-lg">Reservasi Psikologi</h3>
-                        <p class="text-sm text-gray-500">Tanggal: 8 Juli 2025</p>
-                        <p class="text-sm text-gray-500">Jam: 09.00 WIB</p>
-                    </div>
-                    <div class="text-right">
-                        <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm">Gagal</span>
-                    </div>
-                </div>
             </div>
         </div>
 
