@@ -147,11 +147,11 @@
     <div class="grid grid-cols-1 gap-8">
         @php
             $dokter = [
-                ['nama' => 'DR. Tohir Arsyad Romadhon', 'foto' => '/images/dokter-tohir.png', 'spesialis' => 'Dokter Umum'],
-                ['nama' => 'Dr. Nisa Rahmawati', 'foto' => '/images/dokter-nisa.png', 'spesialis' => 'Dokter Anak'],
-                ['nama' => 'Dr. Fikri Alamsyah', 'foto' => '/images/dokter-fikri.png', 'spesialis' => 'Dokter Gigi'],
-                ['nama' => 'Dr. Lestari Wulandari', 'foto' => '/images/dokter-lestari.png', 'spesialis' => 'Psikolog'],
-                ['nama' => 'Dr. Ahmad Yasin', 'foto' => '/images/dokter-yasin.png', 'spesialis' => 'Dokter Mata'],
+                ['nama' => 'DR. Tohir Arsyad Romadhon', 'foto' => '/images/dokter/dokter-tohir.png', 'spesialis' => 'Dokter Umum'],
+                ['nama' => 'Dr. Izzati Al Fahwas', 'foto' => '/images/dokter/dokter-izzat.png', 'spesialis' => 'Dokter Anak'],
+                ['nama' => 'Dr. El Prans sakyono', 'foto' => '/images/dokter/dokter-prana.png', 'spesialis' => 'Dokter Gigi'],
+                ['nama' => 'Dr. Akhmad Akhnaf', 'foto' => '/images/dokter/dokter-ahnaf.png', 'spesialis' => 'Psikolog'],
+                ['nama' => 'Dr. Fahrel Djayantara', 'foto' => '/images/dokter/dokter-farel.png', 'spesialis' => 'Dokter Mata'],
             ];
         @endphp
 
@@ -159,7 +159,7 @@
         <div class="dokter-card p-6 flex flex-col md:flex-row items-center gap-6 shadow-md relative">
             {{-- Foto Dokter --}}
             <div class="flex-shrink-0">
-                <div class="w-32 h-32 rounded-full border-4 border-cyan-400 overflow-hidden">
+                <div class="w-32 h-32 rounded-full border-8 border-cyan-400 overflow-hidden">
                     <img src="{{ $d['foto'] }}" alt="{{ $d['nama'] }}" class="w-full h-full object-cover">
                 </div>
             </div>
