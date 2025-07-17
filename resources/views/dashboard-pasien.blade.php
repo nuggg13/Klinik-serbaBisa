@@ -4,6 +4,29 @@
     <meta charset="UTF-8">
     <title>Dashboard Pasien</title>
     <script src="https://cdn.tailwindcss.com"></script>
+        <style>
+        .dokter-card {
+            background: linear-gradient(to right, #cffafe, #ffffff);
+            border-radius: 100px 20px 20px 100px;
+            clip-path: path("M0,0 
+                Q60,0 100,64 
+                Q60,128 0,128 
+                L100%,128 
+                L100%,0 
+                Z");
+        }
+
+        @media (min-width: 768px) {
+            .dokter-card {
+                clip-path: path("M0,0 
+                    Q100,0 160,160 
+                    Q100,320 0,320 
+                    L100%,320 
+                    L100%,0 
+                    Z");
+            }
+        }
+    </style>
 </head>
 <body class="bg-gray-100 min-h-screen flex">
 
@@ -94,10 +117,98 @@
         </div>
 
         {{-- Section Dokter --}}
-        <div id="dokter" class="hidden text-gray-700">
-            <h2 class="text-xl font-bold mb-4">Daftar Dokter</h2>
-            <p>Konten dokter akan ditambahkan nanti.</p>
+<div id="dokter" class="hidden text-gray-700">
+    <section class="bg-gray-100 py-12 px-6 md:px-12">
+        <h2 class="text-xl md:text-2xl font-semibold text-cyan-600 mb-8">
+            <span class="text-cyan-500">Sipaling Serba Bisa</span>
+            <span class="text-teal-600">Memberi Dokter Yang Kamu Butuhkan</span>
+        </h2>
+
+        <style>
+            .parallelogram-right {
+                transform: skewX(-15deg);
+                display: inline-block;
+            }
+            .parallelogram-left {
+                transform: skewX(15deg);
+                display: inline-block;
+            }
+            .parallelogram-inner {
+                transform: skewX(15deg);
+                display: inline-block;
+            }
+            .parallelogram-inner-left {
+                transform: skewX(-15deg);
+                display: inline-block;
+            }
+        </style>
+
+        <div class="grid grid-cols-1 gap-8">
+            @php
+                $dokter = [
+                    ['nama' => 'DR. Tohir Arsyad Romadhon', 'foto' => '/images/dokter/dokter-tohir.png', 'spesialis' => 'Dokter Umum'],
+                    ['nama' => 'Dr. Izzati Al Fahwas', 'foto' => '/images/dokter/dokter-izzat.png', 'spesialis' => 'Dokter Anak'],
+                    ['nama' => 'Dr. El Prans sakyono', 'foto' => '/images/dokter/dokter-prana.png', 'spesialis' => 'Dokter Kehamilan'],
+                    ['nama' => 'Dr. Akhmad Akhnaf', 'foto' => '/images/dokter/dokter-ahnaf.png', 'spesialis' => 'Psikolog'],
+                    ['nama' => 'Dr. Fahrel Djayantara', 'foto' => '/images/dokter/dokter-farel.png', 'spesialis' => 'Dokter Mata'],
+                ];
+
+                $days = ['SUN' => 'Minggu', 'MON' => 'Senin', 'TUE' => 'Selasa', 'WED' => 'Rabu', 'THU' => 'Kamis', 'FRI' => 'Jumat', 'SAT' => 'Sabtu'];
+            @endphp
+
+            @foreach ($dokter as $d)
+            <div class="dokter-card p-6 flex flex-col md:flex-row items-center gap-6 shadow-md relative bg-white rounded">
+                {{-- Foto Dokter --}}
+                <div class="flex-shrink-0">
+                    <div class="w-32 h-32 rounded-full border-8 border-cyan-400 overflow-hidden">
+                        <img src="{{ $d['foto'] }}" alt="{{ $d['nama'] }}" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                {{-- Info Dokter --}}
+                <div class="flex-1 w-full">
+                    {{-- Nama Dokter --}}
+                    <div class="parallelogram-left bg-cyan-600 mb-4">
+                        <h3 class="text-xl md:text-2xl font-bold text-white px-4 py-1 parallelogram-inner-left">
+                            {{ $d['nama'] }}
+                        </h3>
+                    </div>
+
+                    {{-- Jadwal Mingguan --}}
+                    <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2 text-center">
+                        @foreach ($days as $short => $full)
+                            @php
+                                $jadwal_hari = $jadwal->first(function($j) use ($d, $full) {
+                                    return strtolower($j->nama) == strtolower($d['nama']) && strtolower($j->hari) == strtolower($full);
+                                });
+                            @endphp
+                            <div class="bg-white px-3 py-2 rounded shadow text-sm">
+                                <p class="font-semibold">{{ $short }}</p>
+                                @if ($jadwal_hari && $jadwal_hari->waktu)
+                                    <p>{{ \Carbon\Carbon::createFromFormat('H:i:s', $jadwal_hari->waktu)->format('H:i') }}</p>
+                                @else
+                                    <p>-</p>
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                {{-- Label Spesialisasi --}}
+                <div class="absolute bottom-0 right-0">
+                    <div class="parallelogram-right bg-cyan-600 text-white px-6 py-1 font-semibold text-sm md:text-base">
+                        <div class="parallelogram-inner">
+                            {{ $d['spesialis'] }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
         </div>
+    </section>
+</div>
+
+
     </main>
 
     <script>

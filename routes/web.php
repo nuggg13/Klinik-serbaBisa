@@ -38,9 +38,7 @@ Route::get('/login', function () {
     return view('login');
 })->name('login');
 
-Route::get('/dashboard-pasien', function () {
-    return view('dashboard-pasien');
-})->name('dashboard.pasien');
+Route::get('/dashboard-pasien', [DataController::class, 'dashboardPasien'])->name('dashboard.pasien');
 
 use App\Http\Controllers\AuthController;
 
