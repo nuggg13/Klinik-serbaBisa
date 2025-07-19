@@ -49,3 +49,7 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index']);
 
+use App\Http\Controllers\ReservasiController;
+
+Route::get('/reservasi', [ReservasiController::class, 'create']);
+Route::post('/reservasi', [ReservasiController::class, 'store']);
