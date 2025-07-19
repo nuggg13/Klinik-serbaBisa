@@ -53,3 +53,5 @@ use App\Http\Controllers\ReservasiController;
 
 Route::get('/reservasi', [ReservasiController::class, 'create']);
 Route::post('/reservasi', [ReservasiController::class, 'store']);
+
+Route::post('/reservasi', [ReservasiController::class, 'store'])->name('reservasi.store');

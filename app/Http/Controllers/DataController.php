@@ -74,8 +74,19 @@ class DataController extends Controller
 
     // Tampilkan dashboard pasien
     public function dashboardPasien()
-    {
-        $jadwal = Jadwal::all();
-        return view('dashboard-pasien', compact('jadwal'));
-    }
+{
+    $jadwal = \App\Models\Jadwal::all();
+
+    // Ambil email dari session
+    $email = session('user_email');
+
+    // Ambil reservasi milik user yang login saja
+    $history = \App\Models\Reservasi::with('jadwal')
+                ->where('email', $email)
+                ->latest()
+                ->get();
+
+    return view('dashboard-pasien', compact('jadwal', 'history'));
+}
+
 }
