@@ -29,14 +29,15 @@ class AuthController extends Controller
 
         // Simpan data login ke session
         session([
-            'user_id'       => $user->nomor,
-            'user_nama'     => $user->nama,
-            'user_email'    => $user->email,
-            'user_umur'     => $user->umur,
-            'user_kelamin'  => $user->kelamin,
-            'user_nomor_hp' => $user->nomor_hp,
-            'user_alamat'   => $user->alamat,
-        ]);
+    'user_id'       => $user->nomor,
+    'user_nama'     => $user->nama,
+    'user_email'    => $user->email,
+    'user_umur'     => $user->umur,
+    'user_kelamin'  => $user->kelamin === 'L' ? 'Laki-laki' : 'Perempuan',
+    'user_nomor_hp' => $user->nomor_hp,
+    'user_alamat'   => $user->alamat,
+]);
+
 
         return redirect()->route('dashboard.pasien');
     }

@@ -38,11 +38,20 @@ Route::get('/login', function () {
     return view('login');
 })->name('login');
 
-Route::get('/dashboard-pasien', function () {
-    return view('dashboard-pasien');
-})->name('dashboard.pasien');
+Route::get('/dashboard-pasien', [DataController::class, 'dashboardPasien'])->name('dashboard.pasien');
 
 use App\Http\Controllers\AuthController;
 
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+use App\Http\Controllers\HomeController;
+
+Route::get('/', [HomeController::class, 'index']);
+
+use App\Http\Controllers\ReservasiController;
+
+Route::get('/reservasi', [ReservasiController::class, 'create']);
+Route::post('/reservasi', [ReservasiController::class, 'store']);
+
+Route::post('/reservasi', [ReservasiController::class, 'store'])->name('reservasi.store');

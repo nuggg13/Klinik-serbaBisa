@@ -44,7 +44,7 @@
             <li><a href="#" class="text-teal-400">Dokter yang tersedia</a></li>
         </ul>
         <div class="flex gap-2">
-            <a href="#" class="bg-cyan-400 hover:bg-cyan-500 text-white px-4 py-1 rounded-full">Pasien</a>
+            <a href="register" class="bg-cyan-400 hover:bg-cyan-500 text-white px-4 py-1 rounded-full">Pasien</a>
             <a href="#" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-1 rounded-full">Admin</a>
         </div>
     </nav>
@@ -150,10 +150,12 @@
             $dokter = [
                 ['nama' => 'DR. Tohir Arsyad Romadhon', 'foto' => '/images/dokter/dokter-tohir.png', 'spesialis' => 'Dokter Umum'],
                 ['nama' => 'Dr. Izzati Al Fahwas', 'foto' => '/images/dokter/dokter-izzat.png', 'spesialis' => 'Dokter Anak'],
-                ['nama' => 'Dr. El Prans sakyono', 'foto' => '/images/dokter/dokter-prana.png', 'spesialis' => 'Dokter Gigi'],
+                ['nama' => 'Dr. El Prans sakyono', 'foto' => '/images/dokter/dokter-prana.png', 'spesialis' => 'Dokter Kehamilan'],
                 ['nama' => 'Dr. Akhmad Akhnaf', 'foto' => '/images/dokter/dokter-ahnaf.png', 'spesialis' => 'Psikolog'],
                 ['nama' => 'Dr. Fahrel Djayantara', 'foto' => '/images/dokter/dokter-farel.png', 'spesialis' => 'Dokter Mata'],
             ];
+
+            $days = ['SUN' => 'Minggu', 'MON' => 'Senin', 'TUE' => 'Selasa', 'WED' => 'Rabu', 'THU' => 'Kamis', 'FRI' => 'Jumat', 'SAT' => 'Sabtu'];
         @endphp
 
         @foreach ($dokter as $d)
@@ -167,47 +169,34 @@
 
             {{-- Info Dokter --}}
             <div class="flex-1 w-full">
-                {{-- Nama Dokter (Jajar Genjang) --}}
+                {{-- Nama Dokter --}}
                 <div class="parallelogram-left bg-cyan-600 mb-4">
                     <h3 class="text-sm w-[530px] h-[42px] md:text-2xl font-bold text-white px-4 py-1 parallelogram-inner-left">
                         {{ $d['nama'] }}
                     </h3>
                 </div>
 
-                {{-- Jadwal Mingguan --}}
+                {{-- Jadwal Mingguan (Dynamic) --}}
                 <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2 text-center">
-                    <div class="bg-white px-3 py-2 rounded shadow text-sm">
-                        <p class="font-semibold">SUN</p>
-                        <p>07:00 AM</p>
-                    </div>
-                    <div class="bg-white px-3 py-2 rounded shadow text-sm">
-                        <p class="font-semibold">MON</p>
-                        <p>-</p>
-                    </div>
-                    <div class="bg-white px-3 py-2 rounded shadow text-sm">
-                        <p class="font-semibold">TUE</p>
-                        <p>09:30 AM</p>
-                    </div>
-                    <div class="bg-white px-3 py-2 rounded shadow text-sm">
-                        <p class="font-semibold">WED</p>
-                        <p>-</p>
-                    </div>
-                    <div class="bg-white px-3 py-2 rounded shadow text-sm">
-                        <p class="font-semibold">THU</p>
-                        <p>09:30 AM</p>
-                    </div>
-                    <div class="bg-white px-3 py-2 rounded shadow text-sm">
-                        <p class="font-semibold">FRI</p>
-                        <p>09:30 AM</p>
-                    </div>
-                    <div class="bg-white px-3 py-2 rounded shadow text-sm">
-                        <p class="font-semibold">SAT</p>
-                        <p>07:00 AM</p>
-                    </div>
+                    @foreach ($days as $short => $full)
+                        @php
+                            $jadwal_hari = $jadwal->first(function($j) use ($d, $full) {
+                                return strtolower($j->nama) == strtolower($d['nama']) && strtolower($j->hari) == strtolower($full);
+                            });
+                        @endphp
+                        <div class="bg-white px-3 py-2 rounded shadow text-sm">
+                            <p class="font-semibold">{{ $short }}</p>
+                            @if ($jadwal_hari && $jadwal_hari->waktu)
+                                <p>{{ \Carbon\Carbon::createFromFormat('H:i:s', $jadwal_hari->waktu)->format('H:i') }}</p>
+                            @else
+                                <p>-</p>
+                            @endif
+                        </div>
+                    @endforeach
                 </div>
             </div>
 
-            {{-- Label Spesialisasi (Jajar Genjang Kanan) --}}
+            {{-- Label Spesialisasi --}}
             <div class="absolute bottom-0 right-0">
                 <div class="parallelogram-right bg-cyan-600 text-white px-6 py-1 font-semibold text-sm md:text-base">
                     <div class="parallelogram-inner">
