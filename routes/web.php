@@ -60,7 +60,7 @@ use App\Http\Controllers\AdminController;
 
 // Login admin
 Route::get('/login-admin', [AdminController::class, 'showLoginForm'])->name('admin.login');
-Route::post('/login-admin', [AdminController::class, 'login'])->name('admin.login.submit');
+Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login.post');
 
 // Logout admin
 Route::get('/logout-admin', [AdminController::class, 'logout'])->name('admin.logout');

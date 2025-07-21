@@ -5,57 +5,51 @@
     <title>Dashboard Admin</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 min-h-screen flex">
 
-    <div class="min-h-screen flex">
-        <!-- Sidebar -->
-        <aside class="w-64 bg-white shadow-md px-4 py-6">
-            <h2 class="text-xl font-bold mb-6 text-blue-600">Dashboard Admin</h2>
-            <nav class="space-y-4">
-                <a href="#" onclick="showSection('dataPasien')" class="block text-gray-700 hover:text-cyan-500 font-medium">Data Pasien</a>
-                <a href="#" onclick="showSection('jadwal')" class="block text-gray-700 hover:text-cyan-500 font-medium">Jadwal Dokter</a>
-                <a href="#" onclick="showSection('reservasi')" class="block text-gray-700 hover:text-cyan-500 font-medium">Data Reservasi</a>
-                <a href="{{ route('admin.logout') }}" class="block text-red-500 hover:underline font-medium mt-4">Logout</a>
-            </nav>
-        </aside>
+    {{-- Sidebar --}}
+    <aside class="w-64 bg-white shadow-md min-h-screen px-6 py-8">
+        <div class="mb-8 flex justify-center">
+            <img src="/images/logo_transparant_klinik.png" alt="Logo Klinik" class="w-40 object-contain">
+        </div>
 
-        <!-- Content -->
-        <main class="flex-1 p-6">
-            <h1 class="text-2xl font-bold text-gray-800 mb-6">Selamat datang, Admin {{ session('admin_nama') }}</h1>
+        <nav class="space-y-4">
+            <a href="#" onclick="showSection('beranda')" class="block text-gray-700 hover:text-cyan-500 font-medium">Beranda</a>
+            <a href="#" onclick="showSection('akun-pasien')" class="block text-gray-700 hover:text-cyan-500 font-medium">Akun Pasien</a>
+            <a href="#" onclick="showSection('reservasi')" class="block text-gray-700 hover:text-cyan-500 font-medium">Reservasi Pasien</a>
+            <a href="#" onclick="showSection('jadwal')" class="block text-gray-700 hover:text-cyan-500 font-medium">Jadwal Dokter</a>
+            <a href="#" onclick="showSection('laporan')" class="block text-gray-700 hover:text-cyan-500 font-medium">Laporan</a>
+            <a href="#" onclick="showSection('riwayat')" class="block text-gray-700 hover:text-cyan-500 font-medium">Riwayat Pasien</a>
+            <a href="#" onclick="showSection('akun-admin')" class="block text-gray-700 hover:text-cyan-500 font-medium">Akun Admin</a>
+            <a href="{{ route('logout') }}" class="block text-red-500 hover:underline font-medium mt-4">Logout</a>
+        </nav>
+    </aside>
 
-            {{-- Section: Data Pasien --}}
-            <div id="dataPasien" class="hidden bg-white p-4 rounded shadow">
-                <h2 class="text-xl font-semibold mb-4">Data Pasien</h2>
-                {{-- Tabel data pasien akan diletakkan di sini --}}
-                <p class="text-gray-500">Belum ada data ditampilkan.</p>
-            </div>
+    {{-- Konten Utama --}}
+    <main class="flex-1 p-10 text-gray-700">
 
-            {{-- Section: Jadwal --}}
-            <div id="jadwal" class="hidden bg-white p-4 rounded shadow">
-                <h2 class="text-xl font-semibold mb-4">Jadwal Dokter</h2>
-                {{-- Tabel data jadwal dokter akan diletakkan di sini --}}
-                <p class="text-gray-500">Belum ada data ditampilkan.</p>
-            </div>
+        {{-- Beranda --}}
+        <div id="beranda" class="section">
+            <h1 class="text-2xl font-bold mb-4">Selamat Datang Admin!</h1>
+            <p class="text-gray-600">Gunakan menu di sebelah kiri untuk mengelola sistem klinik.</p>
+        </div>
 
-            {{-- Section: Reservasi --}}
-            <div id="reservasi" class="hidden bg-white p-4 rounded shadow">
-                <h2 class="text-xl font-semibold mb-4">Data Reservasi</h2>
-                {{-- Tabel data reservasi akan diletakkan di sini --}}
-                <p class="text-gray-500">Belum ada data ditampilkan.</p>
-            </div>
-        </main>
-    </div>
+        {{-- Placeholder Sections --}}
+        <div id="akun-pasien" class="section hidden"><h2 class="text-xl font-bold mb-4">Kelola Akun Pasien</h2></div>
+        <div id="reservasi" class="section hidden"><h2 class="text-xl font-bold mb-4">Data Reservasi Pasien</h2></div>
+        <div id="jadwal" class="section hidden"><h2 class="text-xl font-bold mb-4">Jadwal Dokter</h2></div>
+        <div id="laporan" class="section hidden"><h2 class="text-xl font-bold mb-4">Laporan & Statistik</h2></div>
+        <div id="riwayat" class="section hidden"><h2 class="text-xl font-bold mb-4">Riwayat Pasien</h2></div>
+        <div id="akun-admin" class="section hidden"><h2 class="text-xl font-bold mb-4">Kelola Akun Admin</h2></div>
+
+    </main>
 
     <script>
         function showSection(id) {
-            document.querySelectorAll('main > div').forEach(div => {
-                div.classList.add('hidden');
-            });
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(s => s.classList.add('hidden'));
             document.getElementById(id).classList.remove('hidden');
         }
-
-        // Default tampilkan Data Pasien
-        showSection('dataPasien');
     </script>
 
 </body>
