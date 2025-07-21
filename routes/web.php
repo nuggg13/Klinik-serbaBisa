@@ -55,3 +55,15 @@ Route::get('/reservasi', [ReservasiController::class, 'create']);
 Route::post('/reservasi', [ReservasiController::class, 'store']);
 
 Route::post('/reservasi', [ReservasiController::class, 'store'])->name('reservasi.store');
+
+use App\Http\Controllers\AdminController;
+
+// Login admin
+Route::get('/login-admin', [AdminController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/login-admin', [AdminController::class, 'login'])->name('admin.login.submit');
+
+// Logout admin
+Route::get('/logout-admin', [AdminController::class, 'logout'])->name('admin.logout');
+
+// Dashboard admin
+Route::get('/dashboard-admin', [AdminController::class, 'dashboard'])->middleware('admin')->name('admin.dashboard');

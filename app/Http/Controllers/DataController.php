@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\data;
 use App\Models\Jadwal;
+use App\Models\Reservasi;
 
 class DataController extends Controller
 {
@@ -89,4 +90,9 @@ class DataController extends Controller
     return view('dashboard-pasien', compact('jadwal', 'history'));
 }
 
+public function dashboardAdmin()
+{
+    $reservasi = Reservasi::with('jadwal')->latest()->get();
+    return view('dashboard-admin', compact('reservasi'));
+}
 }
