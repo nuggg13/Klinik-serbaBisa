@@ -5,6 +5,7 @@
     <title>Klinik SerbaBisa</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.tailwindcss.com?plugins=aspect-ratio"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <style>
         .dokter-card {
@@ -170,7 +171,7 @@
             <div class="flex-1 w-full">
                 {{-- Nama Dokter --}}
                 <div class="parallelogram-left bg-cyan-600 mb-4">
-                    <h3 class="text-xl md:text-2xl font-bold text-white px-4 py-1 parallelogram-inner-left">
+                    <h3 class="text-sm w-[530px] h-[42px] md:text-2xl font-bold text-white px-4 py-1 parallelogram-inner-left">
                         {{ $d['nama'] }}
                     </h3>
                 </div>
@@ -208,8 +209,70 @@
     </div>
 </section>
 
+<footer class="bg-cyan-500 text-white pt-[13px] rounded-t-[20px]">
+  <div class="md:px-[113px] mx-auto">
+<!-- Logo dan Deskripsi -->
+<div class="flex flex-col md:flex-row justify-between items-center gap-6 border-b border-black pb-[10px] pr-[54px]">
+  <div class="flex flex-row items-center gap-[30px] flex-1">
+    <!-- Logo -->
+    <img src="/images/logo_transparant_klinik1.png" alt="Klinik serbaBisa" class="w-[160px]">
+
+    <!-- Deskripsi -->
+    <p class="text-xs font-bold leading-[14px] align-middle">
+      Klinik SerbaBisa hadir menyediakan berbagai layanan kesehatan berkualitas, lengkap dan terstandarisasi mulai dari layanan umum, tumbuh kembang anak, hingga pengobatan psikologi
+    </p>
+  </div>
+
+  <!-- Ikon Sosial Media -->
+  <div class="flex flex-wrap gap-3 md:gap-[10px]">
+    <a href="#" class="text-white hover:opacity-80"><i class="fab fa-x-twitter text-xl"></i></a>
+    <a href="#" class="text-white hover:opacity-80"><i class="fab fa-instagram text-xl"></i></a>
+    <a href="#" class="text-white hover:opacity-80"><i class="fab fa-facebook text-xl"></i></a>
+    <a href="#" class="text-white hover:opacity-80"><i class="fab fa-youtube text-xl"></i></a>
+  </div>
+</div>
+
+<!-- Kontak & Pendaftaran -->
+<div class="grid grid-cols-1 md:grid-cols-1 gap-6 py-6">
+  <!-- Kontak Kami -->
+  <div>
+    <h3 class="text-xl font-medium mb-[11px]">Kontak Kami:</h3>
+    <ul class="grid grid-cols-2 md:grid-cols-4 gap-[15px]">
+      <li class=""><i class="fab fa-youtube text-red-600 mr-[12px] w-[25px] text-[25px] align-middle"></i><span class="text-base font-medium align-middle">: Klinik serbaBisa</span></li>
+      <li class=""><i class="fab fa-square-whatsapp text-green-500 mr-[12px] w-[25px] text-[25px] align-middle"></i><span class="text-base font-medium align-middle">: 0812-3456-7890</span></li>
+      <li class=""><i class="fab fa-square-instagram text-pink-500 mr-[12px] w-[25px] text-[25px] align-middle"></i><span class="text-base font-medium align-middle">: @klinik_serbabisa</span></li>
+      <li class=""><i class="fa-brands fa-square-facebook text-blue-600 mr-[12px] w-[25px] text-[25px] align-middle"></i><span class="text-base font-medium align-middle">: @klinik_serbabisa</span></li>
+      <li class=""><i class="fas fa-envelope text-red-500 mr-[12px] w-[25px] text-[25px] align-middle"></i><span class="text-base font-medium align-middle">: KlinikserbaBisa@gmail.com</span></li>
+      <li class=""><i class="fas fa-phone-volume text-blue-400 mr-[12px] w-[25px] text-[25px] align-middle"></i><span class="text-base font-medium align-middle">: 12345678910</span></li>
+      <li class=""><i class="fa-brands fa-square-x-twitter text-black mr-[12px] w-[25px] text-[25px] align-middle"></i><span class="text-base font-medium align-middle">: @klinik_serbabisa</span></li>
+    </ul>
+  </div>
+</div>
 
 
+    <!-- Info layanan dan dokter -->
+    <h3 class="text-xl font-medium">Pendaftaran & Layanan:</h3>
+    <div class="mt-[11px] md:flex items-center">
+              <!-- Pendaftaran -->
+        <div class="flex flex-wrap gap-4 border-r border-black pr-[23px] h-[64px] items-center">
+          <a href="#" class="bg-[#009997] text-white rounded-[20px] w-[152px] h-[27px] text-center align-center font-bold text-base hover:bg-gray-100">Pendaftaran Pasien</a>
+          <a href="#" class="bg-[#009997] text-white rounded-[20px] w-[109px] h-[27px] text-center align-center font-bold text-base hover:bg-gray-100">Login Admin</a>
+      </div>
+      <div class="md:justify-center md:items-center ml-[23px] font-bold text-xs">
+      <p class="mb-[14px]">
+        <span class="text-[#009997]">Layanan:</span> Umum, Gigi, Anak, Vaksinasi & Imunisasi, KAI, Lab, Apotek, Fisioterapi, Mata
+      </p>
+      <p>
+        <span class="text-[#009997]">Dokter:</span> Umum, Gigi, Anak, Vaksinasi & Imunisasi, KAI, Lab, Apotek, Fisioterapi, Mata
+      </p>
+      </div>
+    </div>
 
+</div>
+    <!-- Copyright -->
+    <div class="text-center border-t border-black mt-[11px] py-4 text-sm h-[60px]">
+      Copyright © 2025 Klinik serbaBisa
+    </div>
+</footer>
 </body>
 </html>
