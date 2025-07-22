@@ -21,7 +21,7 @@ class Jadwal extends Model
         'maximal_reservasi',
     ];
 
-    public function reservasis()
+    public function reservasi()
     {
         return $this->hasMany(Reservasi::class, 'schedule_id');
     }

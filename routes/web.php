@@ -13,14 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+use App\Http\Controllers\HomeController;
+
+Route::get('/', [HomeController::class, 'index']);
 
 use App\Http\Controllers\DataController;
 
-Route::get('/data/create', [DataController::class,'create'])->name('data.create');
-Route::post('/data', [DataController::class,'store'])->name('data.store');
+Route::get('/data/create', [DataController::class, 'create'])->name('data.create');
+Route::post('/data', [DataController::class, 'store'])->name('data.store');
 Route::get('/data', [DataController::class, 'index'])->name('data.index');
 Route::get('/data/{nomor}/edit', [DataController::class, 'edit'])->name('data.edit');
 Route::put('/data/{nomor}', [DataController::class, 'update'])->name('data.update');
@@ -38,16 +38,12 @@ Route::get('/login', function () {
     return view('login');
 })->name('login');
 
-Route::get('/dashboard-pasien', [DataController::class, 'dashboardPasien'])->name('dashboard.pasien');
+Route::get('/dashboard-pasien', [HomeController::class, 'dashboardPasien'])->name('dashboard.pasien');
 
 use App\Http\Controllers\AuthController;
 
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-
-use App\Http\Controllers\HomeController;
-
-Route::get('/', [HomeController::class, 'index']);
 
 use App\Http\Controllers\ReservasiController;
 
