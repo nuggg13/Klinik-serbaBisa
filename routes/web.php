@@ -67,3 +67,20 @@ Route::get('/logout-admin', [AdminController::class, 'logout'])->name('admin.log
 
 // Dashboard admin
 Route::get('/dashboard-admin', [AdminController::class, 'dashboard'])->middleware('admin')->name('admin.dashboard');
+
+Route::post('/admin/pasien/store', [AdminController::class, 'storePasien'])->name('admin.pasien.store');
+Route::delete('/admin/pasien/{id}', [AdminController::class, 'deletePasien'])->name('admin.pasien.delete');
+Route::get('/admin/pasien/{id}/edit', [AdminController::class, 'editPasien'])->name('admin.pasien.edit');
+Route::put('/admin/pasien/{id}', [AdminController::class, 'updatePasien'])->name('admin.pasien.update');
+
+// Admin CRUD routes
+Route::get('/admin/admin/{id}/edit', [AdminController::class, 'editAdmin'])->name('admin.admin.edit');
+Route::post('/admin/admin', [AdminController::class, 'storeAdmin'])->name('admin.admin.store');
+Route::put('/admin/admin/{id}', [AdminController::class, 'updateAdmin'])->name('admin.admin.update');
+Route::delete('/admin/admin/{id}', [AdminController::class, 'destroyAdmin'])->name('admin.admin.destroy');
+
+// Jadwal Dokter routes
+Route::post('/admin/jadwal', [AdminController::class, 'storeJadwal'])->name('admin.jadwal.store');
+Route::get('/admin/jadwal/{id}/edit', [AdminController::class, 'editJadwal']);
+Route::put('/admin/jadwal/{id}', [AdminController::class, 'updateJadwal']);
+Route::delete('/admin/jadwal/{id}', [AdminController::class, 'destroyJadwal']);
